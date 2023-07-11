@@ -2,15 +2,24 @@
   "name": "movie-back",
   "version": "0.0.0",
   "private": true,
+  "main": "app.ts",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "npx nodemon",
+    "init": "npx nodemon models/init.ts"
   },
   "dependencies": {
+    "@types/express": "^4.17.17",
+    "@types/sequelize": "^4.28.15",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "mysql2": "^3.5.1",
+    "sequelize": "^6.32.1",
+    "sequelize-typescript": "^2.1.5",
+    "ts-node": "^10.9.1"
   }
 }
