@@ -8,7 +8,7 @@ import path from 'path';
 
 const app = express();
 const port = 3000;
-import {Sequelize} from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 
 
 const main = async () => {
@@ -44,14 +44,13 @@ const main = async () => {
   //   res.render('error');
   // });
   
-  
-  
-  
-  const sequelize = new Sequelize('lesrescapes', 'lesrescapes', 'lesrescapes', {
+  const sequelize = new Sequelize({
+    database: 'lesrescapes',
+    username: 'lesrescapes',
+    password: 'lesrescapes',
     host: 'edouardclisson.fr',
     dialect: 'mysql',
   });
-  
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
