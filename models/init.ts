@@ -1,8 +1,8 @@
-import {ba} from '../models/movie'
+import {Movie} from '../models/movie'
 
 const create_tables = async () => {
-    // await Movie.sync()
-    console.log(ba)
+    await Movie.sync()
+
 }
 
 create_tables()

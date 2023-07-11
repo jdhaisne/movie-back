@@ -1,5 +1,7 @@
 
 import express from 'express';
+// import { connect } from 'mongoose';
+import {connectDb} from './db'
 import path from 'path';
 
 // var indexRouter = require('./routes/index');
@@ -44,19 +46,7 @@ const main = async () => {
   //   res.render('error');
   // });
   
-  const sequelize = new Sequelize({
-    database: 'lesrescapes',
-    username: 'lesrescapes',
-    password: 'lesrescapes',
-    host: 'edouardclisson.fr',
-    dialect: 'mysql',
-  });
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
+  connectDb()
   
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
