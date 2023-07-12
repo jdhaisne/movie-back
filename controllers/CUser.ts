@@ -2,7 +2,7 @@ const { User } = require("../models/MUser");
 const bcrypt = require("bcrypt");
 
 export const signUp = async (req: any, res: any) => {
-  //version du code sans la vérification des conditions
+  //version du code sans la vérification des conditions (à supprimer pour mettre l'autre version du code)
   try {
     const [user, created] = await User.findOrCreate({
       where: { mail: req.body.mail },
@@ -51,6 +51,7 @@ export const signUp = async (req: any, res: any) => {
   //   );
 
   //   return birthDateF <= thirteenYearsAgo;
+
   // }
   // const birthDateF = new Date(formattedBirthDateB);
   // const isThirteenOrMore = isThirteenYearsOld(birthDateF);
