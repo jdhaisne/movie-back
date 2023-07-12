@@ -4,8 +4,11 @@ import { connectDb } from "./db";
 import path from "path";
 // import movieRoutes from "./routes/movie";
 const movieRoutes = require("./routes/movie")
+const topicRoutes = require("./routes/topic")
+const commentRoutes = require("./routes/comment")
 
-// const cors = require("cors");
+
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
@@ -13,11 +16,11 @@ const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  // app.use(
-  //   cors({
-  //     origin: "http://localhost:5173",
-  //   })
-  // );
+  app.use(
+    cors({
+      origin: "http://localhost:5173",
+    })
+  );
   
   connectDb();
   
@@ -26,6 +29,8 @@ const main = async () => {
   });
 
   app.use("/movie", movieRoutes);
+  app.use("/topic", topicRoutes);
+  app.use("/comment", commentRoutes);
 };
 
 main();

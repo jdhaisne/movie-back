@@ -1,9 +1,5 @@
 import {Movie} from '../models/movie'
-
-import router from "express"
-// const Router = router.Router();
-
-// import sequelize from '../db'
+import { v4 as uuid4 } from 'uuid';
 
   exports.getAllMovies = (req:any, res:any, next:any) => {
     console.log('test')
@@ -20,8 +16,7 @@ import router from "express"
 
   exports.getOneMovie = (req:any, res:any, next:any) => {
     console.log('test')
-    Movie.title 
-    Movie.findOne({ where: { title: req.params.title } })
+    Movie.findAll({ where: { title: req.params.title } })
       .then((movies:any) => {
         res.status(200).json(movies);
       })
@@ -31,10 +26,6 @@ import router from "express"
         });
       });
   };
-
-
-
-
 
   exports.postMovie = async (req:any, res:any, next:any) => {
     console.log(req.body)
@@ -54,7 +45,7 @@ import router from "express"
       Title :req.body.title,
       Type :req.body.type,
       Year :req.body.year,
-      ImdbID: req.body.id,
+      ImdbID: uuid4(),
     });
         movie
         .then(() => res.status(201).json({ movie }))
