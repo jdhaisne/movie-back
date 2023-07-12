@@ -3,18 +3,46 @@ import express from "express";
 import { connectDb } from "./db";
 import path from "path";
 
+
 // var indexRouter = require('./routes/index');
 var usersRouter = require("./routes/user");
 
+// import movieRoutes from "./routes/movie";
+const movieRoutes = require("./routes/movie")
+
+
+// const cors = require("cors");
 const app = express();
 const port = 3000;
-import { Sequelize } from "sequelize-typescript";
+
 
 const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
+
+  
+
+  // app.use(
+  //   cors({
+  //     origin: "http://localhost:5173",
+  //   })
+  // );
+  
+  connectDb();
+  
+  app.listen(port, () => {
+    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+  });
+
+  app.use("/movie", movieRoutes);
   app.use("/", usersRouter);
+};
+
+main();
+
+module.exports = app;
+
 
   // app.get('/', (req: Request, res: Response) => {
   //   res.send('Express + TypeScript Server');
@@ -39,15 +67,6 @@ const main = async () => {
   //   // render the error page
   //   res.status(err.status || 500);
   //   res.render('error');
+
   // });
 
-  connectDb();
-
-  app.listen(port, () => {
-    console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-  });
-};
-
-main();
-
-module.exports = app;
