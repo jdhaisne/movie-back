@@ -1,5 +1,5 @@
 import { Movie } from "../models/movie";
-import { User } from "../models/user";
+import { User } from "./MUser";
 
 const create_tables = async () => {
   await Movie.sync(); // equal to CREATE TABLE IF NOT EXISTS
