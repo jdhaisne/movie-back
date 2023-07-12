@@ -22,3 +22,4 @@ import {DataTypes } from 'sequelize'
     },{
         timestamps: false,
     })
+
