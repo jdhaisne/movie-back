@@ -7,3 +7,5 @@ const create_tables = async () => {
 };
 
 create_tables();
+
+//{force : true } réinitialise la table à 0
