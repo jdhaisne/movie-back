@@ -10,12 +10,7 @@ var usersRouter = require("./routes/user");
 // import movieRoutes from "./routes/movie";
 const movieRoutes = require("./routes/movie")
 
-<<<<<<< HEAD
 const cors = require("cors");
-=======
-
-// const cors = require("cors");
->>>>>>> 9e691c4e99d60c5c5829c37a304ff3011ab9e39b
 const app = express();
 const port = 3000;
 
@@ -24,22 +19,11 @@ const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-<<<<<<< HEAD
   app.use(
     cors({
       origin: "http://localhost:5173",
     })
   );
-=======
-
-  
-
-  // app.use(
-  //   cors({
-  //     origin: "http://localhost:5173",
-  //   })
-  // );
->>>>>>> 9e691c4e99d60c5c5829c37a304ff3011ab9e39b
   
   connectDb();
   
