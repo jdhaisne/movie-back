@@ -2,16 +2,26 @@ import express from "express";
 // import { connect } from 'mongoose';
 import { connectDb } from "./db";
 import path from "path";
+
+
+// var indexRouter = require('./routes/index');
+var usersRouter = require("./routes/user");
+
 // import movieRoutes from "./routes/movie";
 const movieRoutes = require("./routes/movie")
+
 
 // const cors = require("cors");
 const app = express();
 const port = 3000;
 
+
 const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
+
+
+  
 
   // app.use(
   //   cors({
@@ -26,6 +36,7 @@ const main = async () => {
   });
 
   app.use("/movie", movieRoutes);
+  app.use("/", usersRouter);
 };
 
 main();
@@ -56,4 +67,6 @@ module.exports = app;
   //   // render the error page
   //   res.status(err.status || 500);
   //   res.render('error');
+
   // });
+
