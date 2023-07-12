@@ -7,9 +7,10 @@ import path from "path";
 var usersRouter = require("./routes/RUser");
 
 // import movieRoutes from "./routes/movie";
-const movieRoutes = require("./routes/movie");
 
-// const cors = require("cors");
+const movieRoutes = require("./routes/movie")
+
+const cors = require("cors");
 const app = express();
 const port = 3000;
 
@@ -17,12 +18,13 @@ const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-  // app.use(
-  //   cors({
-  //     origin: "http://localhost:5173",
-  //   })
-  // );
 
+  app.use(
+    cors({
+      origin: "http://localhost:5173",
+    })
+  );
+  
   connectDb();
 
   app.listen(port, () => {
