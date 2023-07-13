@@ -1,12 +1,9 @@
 import express from "express";
-// import { connect } from 'mongoose';
 import { connectDb } from "./db";
 
 const usersRouter = require("./routes/RUser");
 
-// import movieRoutes from "./routes/movie";
-
-const movieRoutes = require("./routes/movie")
+const movieRoutes = require("./routes/movie");
 
 const cors = require("cors");
 const app = express();
@@ -16,22 +13,20 @@ const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-
   app.use(
     cors({
       origin: "http://localhost:5173",
     })
   );
-  
+
   connectDb();
 
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
   });
 
-  // app.use("/movie", movieRoutes); à décommenter
+  app.use("/movie", movieRoutes);
   app.use("/", usersRouter);
-  // app.use("/users", usersRouter);
 };
 
 main();
