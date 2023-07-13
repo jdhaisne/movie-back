@@ -1,10 +1,8 @@
 import express from "express";
 // import { connect } from 'mongoose';
 import { connectDb } from "./db";
-import path from "path";
 
-// var indexRouter = require('./routes/index');
-var usersRouter = require("./routes/RUser");
+const usersRouter = require("./routes/RUser");
 
 // import movieRoutes from "./routes/movie";
 const movieRoutes = require("./routes/movie");
@@ -29,8 +27,9 @@ const main = async () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
   });
 
-  app.use("/movie", movieRoutes);
+  // app.use("/movie", movieRoutes); à décommenter
   app.use("/", usersRouter);
+  // app.use("/users", usersRouter);
 };
 
 main();

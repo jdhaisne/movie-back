@@ -1,9 +1,60 @@
 const { User } = require("../models/MUser");
 const bcrypt = require("bcrypt");
 
+//ROUTE GET POUR RECUPERER TOUS LES UTILISATEURS
+// NB : utiliser http:// et non https !!
+export const getUsers = async (req: any, res: any) => {
+  try {
+    const users = await User.findAll();
+    console.log(users);
+    res.send(users);
+  } catch (error) {
+    console.error("Error occurred:", error);
+    res.status(500).send("An error occurred");
+  }
+};
+
+//ROUTE POST POUR VERIFIER SI L'UTILISATEUR A DEJA UN COMPTE et qu'il a le bon mot de passe
+// NB : utiliser http:// et non https !!
+export const checkUser = async (req: any, res: any) => {
+  const { mail, password } = req.body;
+  try {
+    const user = await User.findOne({ where: { mail } });
+
+    if (user) {
+      // L'utilisateur existe dans la table
+      // Vérifiez le mot de passe en comparant les hashs
+      const passwordMatch = bcrypt.compareSync(
+        req.body.password,
+        user.passWord
+      );
+
+      if (passwordMatch) {
+        res.send("Connexion réussie");
+      } else {
+        res.send("Mot de passe incorrect");
+      }
+    } else {
+      // L'utilisateur n'existe pas dans la table
+      res.send("Utilisateur non enregistré");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la recherche de l'utilisateur :", error);
+    res.status(500).json({ message: "Une erreur s'est produite" });
+  }
+};
+
+///ROUTE POUR AJOUTER UN USER
 export const signUp = async (req: any, res: any) => {
   //version du code sans la vérification des conditions (à supprimer pour mettre l'autre version du code)
+  console.log(req.body.mail);
   try {
+    const password = req.body.password;
+
+    if (!password) {
+      // Gérer le cas où le mot de passe est manquant
+      return res.status(400).send("Le mot de passe est requis");
+    }
     const [user, created] = await User.findOrCreate({
       where: { mail: req.body.mail },
       defaults: {
@@ -16,7 +67,7 @@ export const signUp = async (req: any, res: any) => {
       },
     });
 
-    console.log(user);
+    // console.log(user);
 
     if (created) {
       console.log("New user created:", user);
