@@ -1,10 +1,15 @@
-import { Movie } from "../models/movie";
+
+import {Movie} from '../models/movie'
+import {Topic} from '../models/topic'
+import {Comment} from '../models/comment'
 import { User } from "./MUser";
 
 const create_tables = async () => {
-  await Movie.sync(); // equal to CREATE TABLE IF NOT EXISTS
-  await User.sync();
-};
+    await Movie.sync()
+    await Topic.sync()
+    await Comment.sync()
+    await User.sync();
+}
 
 create_tables();
 

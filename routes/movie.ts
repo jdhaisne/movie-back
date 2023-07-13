@@ -4,7 +4,6 @@ const movieCtrl = require("../controllers/movie")
 
 const router = express.Router();
 
-
 router.get("/", movieCtrl.getAllMovies);
 router.get("/:title", movieCtrl.getOneMovie);
 router.post("/createMovie", movieCtrl.postMovie);
