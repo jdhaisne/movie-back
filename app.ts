@@ -2,9 +2,11 @@ import express from "express";
 import { connectDb } from "./db";
 
 const usersRouter = require("./routes/RUser");
+
 const movieRoutes = require("./routes/movie")
 const topicRoutes = require("./routes/topic")
 const commentRoutes = require("./routes/comment")
+
 
 const cors = require("cors");
 const app = express();
@@ -14,13 +16,12 @@ const main = async () => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
 
-
   app.use(
     cors({
       origin: "http://localhost:5173",
     })
   );
-  
+
   connectDb();
 
   app.listen(port, () => {

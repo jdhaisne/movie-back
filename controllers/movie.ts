@@ -14,6 +14,7 @@ import { v4 as uuid4 } from 'uuid';
       });
   };
 
+
   exports.getOneMovie = (req:any, res:any, next:any) => {
     console.log('test')
     Movie.findAll({ where: { title: req.params.title } })
