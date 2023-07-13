@@ -3,7 +3,10 @@ import { connectDb } from "./db";
 
 const usersRouter = require("./routes/RUser");
 
-const movieRoutes = require("./routes/movie");
+const movieRoutes = require("./routes/movie")
+const topicRoutes = require("./routes/topic")
+const commentRoutes = require("./routes/comment")
+
 
 const cors = require("cors");
 const app = express();
@@ -26,7 +29,10 @@ const main = async () => {
   });
 
   app.use("/movie", movieRoutes);
+  app.use("/topic", topicRoutes);
+  app.use("/comment", commentRoutes);
   app.use("/", usersRouter);
+
 };
 
 main();

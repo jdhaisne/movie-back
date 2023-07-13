@@ -18,7 +18,7 @@ import {DataTypes } from 'sequelize'
         Title :{ type: DataTypes.STRING},
         Type :{ type: DataTypes.STRING},
         Year :{ type: DataTypes.STRING},
-        ImdbID: {type: DataTypes.INTEGER}
+        ImdbID: {type: DataTypes.TEXT}
     },{
         timestamps: false,
     })
