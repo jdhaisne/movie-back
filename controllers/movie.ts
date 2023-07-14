@@ -28,6 +28,7 @@ import { v4 as uuid4 } from 'uuid';
       });
   };
 
+  
   exports.postMovie = async (req:any, res:any, next:any) => {
     console.log(req.body)
     const movie = Movie.create({
