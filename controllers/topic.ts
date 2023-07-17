@@ -3,6 +3,7 @@ import { v4 as uuid4 } from "uuid";
 
 exports.postTopic = async (req: any, res: any, next: any) => {
   const topic = Topic.create({
+    Title: req.body.title,
     Subject: req.body.subject,
     // Image : req.body.image,
     Id: uuid4(),
