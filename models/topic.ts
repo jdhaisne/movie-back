@@ -4,6 +4,7 @@ import { DataTypes } from "sequelize";
 export const Topic = sequelize.define(
   "topic",
   {
+    Title: { type: DataTypes.STRING({ length: 100 }) },
     // allowNull: false est l'équivalent de require true
     Subject: { type: DataTypes.TEXT },
     // Image : {type: DataTypes.TEXT},
