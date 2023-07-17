@@ -1,0 +1,13 @@
+import  express from "express";
+import {CRating} from "../controllers/CRating"
+
+const router = express.Router();
+
+router.get('/', CRating.getAllRatings)
+router.get('/:id', CRating.getRatingById)
+router.get('/user/:id', CRating.getRatingsByUserId)
+router.get('/user/mean/:id', CRating.getMeanRatingByUserId)
+router.get('/movie/:id', CRating.getRatingsByMovieId)
+router.get('/movie/mean/:id', CRating.getMeanRatingByMovieId)
+
+router.post('/', CRating.postRating)
