@@ -1,4 +1,6 @@
 import express from "express";
+const bodyParser = require('body-parser')
+// import { connect } from 'mongoose';
 import { connectDb } from "./db";
 
 const usersRouter = require("./routes/RUser");
@@ -13,8 +15,11 @@ const app = express();
 const port = 3000;
 
 const main = async () => {
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
+  // app.use(express.json());
+  // app.use(express.urlencoded({ extended: false }));
+  app.use(bodyParser.urlencoded({ extended: false }))
+  
+  app.use(bodyParser.json())
 
   app.use(
     cors({
