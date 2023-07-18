@@ -7,7 +7,7 @@ const hasValidId = (id: any) => {
     return true
 }
 
- const getALlLike = async (req: any, res: any) => {
+ const getAllLikes = async (req: any, res: any) => {
     try {
         const likes = await MLike.findAll()
         console.log(likes)
@@ -119,8 +119,8 @@ const deleteLike = async (req: any, res: any) => {
     }
 }
 
-export const Clike = {
-    getALlLike,
+export const CLike = {
+    getAllLikes,
     getLikeById,
     getLikesByMovieId, 
     getLikesByUserId,
