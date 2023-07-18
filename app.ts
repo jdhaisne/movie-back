@@ -8,6 +8,7 @@ const usersRouter = require("./routes/RUser");
 const movieRoutes = require("./routes/movie")
 const topicRoutes = require("./routes/topic")
 const commentRoutes = require("./routes/comment")
+const ratingRoutes = require("./routes/RRating")
 
 
 const cors = require("cors");
@@ -37,6 +38,7 @@ const main = async () => {
   app.use("/topic", topicRoutes);
   app.use("/comment", commentRoutes);
   app.use("/", usersRouter);
+  app.use("/rating", ratingRoutes)
 
 };
 

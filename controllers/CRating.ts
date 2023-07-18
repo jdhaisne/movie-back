@@ -1,3 +1,5 @@
+import bodyParser from "body-parser"
+
 const { MRating } = require('../models/MRating')
 
 const hasValidId = (id) => {
@@ -81,7 +83,8 @@ const getMeanRatingByMovieId = async (req: any, res: any) => {
         console.log(mean)
         res.send(mean)
     } catch (err) {
-        
+        console.error("Error occurred:", err);
+        res.status(500).send("An error occurred");
     }
 }
 
@@ -102,13 +105,71 @@ const getMeanRatingByUserId = async (req: any, res: any) => {
         console.log(mean)
         res.send(mean)
     } catch (err) {
-        
+        console.error("Error occurred:", err);
+        res.status(500).send("An error occurred");
     }
 }
 
 
 const postRating = async (req: any, res: any) => {
+    console.log(req.body)
+    try {
+        let rating = await MRating.findOrCreate({
+                where: {
+                    userId: req.body.userId,
+                    movieId: req.body.movieId
+                },
+                defaults: {
+                    rating: req.body.rating
+                }
+        })
+        if (!rating.created) {
+           rating = await MRating.update({rating: req.body.rating}, {
+                where: {
+                    userId: req.body.userId,
+                    movieId: req.body.movieId
+                }
+            })
+        }
+        console.log(rating)
+        res.send(rating)
+    } catch (err) {
+        console.error("Error occurred:", err);
+        res.status(500).send("An error occurred");
+    }
+}
 
+const putRating = async (req: any, res: any) => {
+    console.log(req.body)
+    try {
+        let updatedRating = await MRating.update({rating: req.body.rating}, {
+            where: {
+                userId: req.body.userId,
+                movieId: req.body.movieId
+            }
+        })
+        console.log(updatedRating)
+        res.send(updatedRating)
+    } catch (err) {
+        console.error("Error occurred:", err);
+        res.status(500).send("An error occurred");
+    }
+}
+
+const deleteRating = async (req: any, res: any) => {
+    console.log(req.body)
+    try {
+        let deletedRating = await MRating.delete({
+            where: {
+                id: req.body.id
+            }
+        })
+        console.log(deletedRating)
+        res.send(deletedRating)
+    } catch (err) {
+        console.error("Error occurred:", err);
+        res.status(500).send("An error occurred");
+    }
 }
 export const CRating = {
     getAllRatings,
@@ -116,5 +177,8 @@ export const CRating = {
     getRatingsByMovieId,
     getRatingsByUserId,
     getMeanRatingByMovieId,
-    getMeanRatingByUserId
+    getMeanRatingByUserId,
+    postRating,
+    putRating,
+    deleteRating
 }

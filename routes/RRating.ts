@@ -11,3 +11,7 @@ router.get('/movie/:id', CRating.getRatingsByMovieId)
 router.get('/movie/mean/:id', CRating.getMeanRatingByMovieId)
 
 router.post('/', CRating.postRating)
+
+router.put('/:id', CRating.putRating)
+
+router.delete('/:id', CRating.deleteRating)
