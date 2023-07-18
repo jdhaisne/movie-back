@@ -15,3 +15,5 @@ router.post('/', CRating.postRating)
 router.put('/:id', CRating.putRating)
 
 router.delete('/:id', CRating.deleteRating)
+
+module.exports = router;
