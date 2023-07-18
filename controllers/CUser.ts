@@ -17,10 +17,10 @@ export const getUsers = async (req: any, res: any) => {
 //ROUTE POST POUR VERIFIER SI L'UTILISATEUR A DEJA UN COMPTE et qu'il a le bon mot de passe
 // NB : utiliser http:// et non https !!
 export const checkUser = async (req: any, res: any) => {
-  const { mail, password } = req.body;
+  const { mail } = req.body;
   try {
     const user = await User.findOne({ where: { mail } });
-
+    console.log(user);
     if (user) {
       // L'utilisateur existe dans la table
       // Vérifiez le mot de passe en comparant les hashs
@@ -30,13 +30,18 @@ export const checkUser = async (req: any, res: any) => {
       );
 
       if (passwordMatch) {
-        res.send("Connexion réussie");
+        res.json({ success: true, user });
       } else {
-        res.send("Mot de passe incorrect");
+        res.json({ success: false, message: "Mot de passe incorrect" });
       }
+      // on ne peut pas faire un res.status + . json, il faut mettre le statut dans le json
     } else {
       // L'utilisateur n'existe pas dans la table
-      res.send("Utilisateur non enregistré");
+      res.json({
+        success: false,
+        message: "Utilisateur non enregistré",
+        status: 501,
+      });
     }
   } catch (error) {
     console.error("Erreur lors de la recherche de l'utilisateur :", error);
