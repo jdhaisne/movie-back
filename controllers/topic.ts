@@ -5,10 +5,9 @@ exports.postTopic = async (req: any, res: any, next: any) => {
   const topic = Topic.create({
     Title: req.body.title,
     Subject: req.body.subject,
-    // Image : req.body.image,
     Id: uuid4(),
     MovieId: req.params.id,
-    Type: req.params.type,
+    Type: req.body.type,
   });
   topic
     .then(() => res.status(201).json({ topic }))
@@ -28,7 +27,7 @@ exports.getAllTopics = async (req: any, res: any, next: any) => {
 };
 
 exports.getOneTopic = async (req: any, res: any, next: any) => {
-  Topic.findAll({ where: { id: req.params.id } })
+  Topic.findAll({ where: { movieId: req.params.id } })
     .then((topic: any) => {
       res.status(200).json(topic);
     })
