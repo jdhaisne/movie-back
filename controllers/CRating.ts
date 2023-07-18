@@ -2,7 +2,7 @@ import bodyParser from "body-parser"
 
 const { MRating } = require('../models/MRating')
 
-const hasValidId = (id) => {
+const hasValidId = (id: any) => {
     if (!(id || id === 0)) return false
     return true
 }
