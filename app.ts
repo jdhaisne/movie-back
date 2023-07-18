@@ -1,19 +1,26 @@
 import express from "express";
+const bodyParser = require('body-parser')
+// import { connect } from 'mongoose';
 import { connectDb } from "./db";
 
 const usersRouter = require("./routes/RUser");
 
-const movieRoutes = require("./routes/movie");
-const topicRoutes = require("./routes/topic");
-const commentRoutes = require("./routes/comment");
+
+const movieRoutes = require("./routes/movie")
+const topicRoutes = require("./routes/topic")
+const commentRoutes = require("./routes/comment")
+const ratingRoutes = require("./routes/RRating")
 
 const cors = require("cors");
 const app = express();
 const port = 3000;
 
 const main = async () => {
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: false }));
+  // app.use(express.json());
+  // app.use(express.urlencoded({ extended: false }));
+  app.use(bodyParser.urlencoded({ extended: false }))
+  
+  app.use(bodyParser.json())
 
   app.use(
     cors({
@@ -31,6 +38,9 @@ const main = async () => {
   app.use("/topic", topicRoutes);
   app.use("/comment", commentRoutes);
   app.use("/", usersRouter);
+  app.use("/rating", ratingRoutes)
+
+
 };
 
 main();
