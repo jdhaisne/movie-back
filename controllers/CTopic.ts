@@ -1,13 +1,12 @@
-import { Topic } from "../models/topic";
+import { MTopic } from "../models/MTopic";
 import { v4 as uuid4 } from "uuid";
 
 exports.postTopic = async (req: any, res: any, next: any) => {
-  const topic = Topic.create({
-    Title: req.body.title,
-    Subject: req.body.subject,
-    Id: uuid4(),
-    MovieId: req.params.id,
-    Type: req.body.type,
+  const topic = MTopic.create({
+    title: req.body.title,
+    subject: req.body.subject,
+    movieId: req.params.id,
+    type: req.body.type,
   });
   topic
     .then(() => res.status(201).json({ topic }))
@@ -15,7 +14,7 @@ exports.postTopic = async (req: any, res: any, next: any) => {
 };
 
 exports.getAllTopics = async (req: any, res: any, next: any) => {
-  Topic.findAll()
+  MTopic.findAll()
     .then((topic: any) => {
       res.status(200).json(topic);
     })
@@ -27,7 +26,7 @@ exports.getAllTopics = async (req: any, res: any, next: any) => {
 };
 
 exports.getOneTopic = async (req: any, res: any, next: any) => {
-  Topic.findAll({ where: { movieId: req.params.id } })
+  MTopic.findAll({ where: { movieId: req.params.id } })
     .then((topic: any) => {
       res.status(200).json(topic);
     })
