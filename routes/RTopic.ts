@@ -1,6 +1,6 @@
 import express from "express";
 
-const topicCtrl = require("../controllers/topic")
+const topicCtrl = require("../controllers/CTopic")
 
 const router = express.Router();
 

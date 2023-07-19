@@ -1,10 +1,9 @@
-import {Comment} from '../models/comment'
+import {MComment} from '../models/MComment'
 import { v4 as uuid4 } from 'uuid';
 
 exports.postComment = async (req:any, res:any) => {
-    const comment = Comment.create({
+    const comment = MComment.create({
         Message : req.body.message,
-        Id: uuid4(),
         UserId : req.body.userID,
         TopicId : req.body.topicID,
     })
@@ -14,7 +13,7 @@ exports.postComment = async (req:any, res:any) => {
 }
 
 exports.getAllComments = async (req:any, res:any, next:any) => {
-    Comment.findAll()
+    MComment.findAll()
     .then((comment:any) => {
         res.status(200).json(comment);
       })
@@ -26,7 +25,7 @@ exports.getAllComments = async (req:any, res:any, next:any) => {
   }
 
   exports.getOneComment =  async (req:any, res:any, next:any) => {
-    Comment.findAll({where: {id: req.params.id}})
+    MComment.findAll({where: {id: req.params.id}})
     .then((comment:any) => {
         res.status(200).json(comment);
       })
