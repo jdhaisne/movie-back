@@ -26,7 +26,7 @@ exports.getAllComments = async (req:any, res:any, next:any) => {
   }
 
   exports.getOneComment =  async (req:any, res:any, next:any) => {
-    Comment.findAll({where: {id: req.params.id}})
+    Comment.findAll({where: {topicId: req.params.id}})
     .then((comment:any) => {
         res.status(200).json(comment);
       })
