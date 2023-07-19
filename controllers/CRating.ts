@@ -50,6 +50,30 @@ const getRatingsByUserId = async (req: any, res: any) => {
   }
 };
 
+const getRatingsByUserIdAndMovieId = async (req: any, res: any) => {
+  try {
+    const userId = req.params.userId;
+    if (!hasValidId(userId)) {
+      res.status(500).send("An error occurred: userID needed");
+      return;
+    }
+    const movieID = req.params.movieID;
+    if (!hasValidId(userId)) {
+      console.log(req.params);
+      res.status(500).send("An error occurred: movieID needed");
+      return;
+    }
+    const ratings = await MRating.findOne({
+      where: { userId: userId, movieID: movieID },
+    });
+    console.log(ratings);
+    res.send(ratings);
+  } catch (err) {
+    console.error("Error occurred:", err);
+    res.status(500).send("An error occurred");
+  }
+};
+
 const getRatingsByMovieId = async (req: any, res: any) => {
   try {
     const id = parseInt(req.params.id);
@@ -181,6 +205,7 @@ export const CRating = {
   getRatingById,
   getRatingsByMovieId,
   getRatingsByUserId,
+  getRatingsByUserIdAndMovieId,
   getMeanRatingByMovieId,
   getMeanRatingByUserId,
   postRating,
