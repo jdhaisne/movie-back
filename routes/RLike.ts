@@ -7,6 +7,7 @@ router.get('/', CLike.getAllLikes)
 router.get('/:id', CLike.getLikeById)
 router.get('/user/:id', CLike.getLikesByUserId)
 router.get('/movie/:id', CLike.getLikesByMovieId)
+router.get('/movie/count/:id', CLike.getLikeCountByMovieId)
 
 router.post('/', CLike.postLike)
 

@@ -66,6 +66,22 @@ const getLikesByMovieId = async (req: any, res: any) =>  {
     }
 }
 
+const getLikeCountByMovieId = async (req: any, res: any) => {
+    try {
+        const id = parseInt(req.params.id)
+        if(!(id || id === 0)) {
+            res.status(500).send('An error occurred: ID needed')
+            return
+        }
+        const likeCount = await MLike.count({where: {movieId: id}})
+        console.log(likeCount)
+        res.send(likeCount)
+    } catch (err) {
+        console.error("Error occurred:", err);
+        res.status(500).send("An error occurred");
+    }
+}
+
 const postLike = async (req: any, res: any) => {
     console.log(req.body)
     try {
@@ -123,6 +139,7 @@ export const CLike = {
     getAllLikes,
     getLikeById,
     getLikesByMovieId, 
+    getLikeCountByMovieId,
     getLikesByUserId,
     
     postLike,
