@@ -1,6 +1,6 @@
 import express from"express";
 // import movieCtrl from "../controllers/movie";
-const commentCtrl = require("../controllers/comment")
+const commentCtrl = require("../controllers/CComment")
 
 const router = express.Router();
 

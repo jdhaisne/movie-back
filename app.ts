@@ -3,13 +3,12 @@ const bodyParser = require('body-parser')
 // import { connect } from 'mongoose';
 import { connectDb } from "./db";
 
-const usersRouter = require("./routes/RUser");
-
-const movieRoutes = require("./routes/movie")
-const topicRoutes = require("./routes/topic")
-const commentRoutes = require("./routes/comment")
+const usersRoutes = require("./routes/RUser");
+const movieRoutes = require("./routes/RMovie")
+const topicRoutes = require("./routes/RTopic")
+const commentRoutes = require("./routes/RComment")
 const ratingRoutes = require("./routes/RRating")
-
+const likeRoutes = require("./routes/RLike")
 
 const cors = require("cors");
 const app = express();
@@ -32,13 +31,15 @@ const main = async () => {
 
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-  });
+    });
 
+  app.use("/", usersRoutes);
   app.use("/movie", movieRoutes);
   app.use("/topic", topicRoutes);
   app.use("/comment", commentRoutes);
-  app.use("/", usersRouter);
   app.use("/rating", ratingRoutes)
+  app.use("/like", likeRoutes)
+
 
 };
 
