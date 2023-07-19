@@ -4,9 +4,8 @@ const router = express.Router();
 
 // const userCtrl = require("../controllers/user");
 // const adminMiddleware = require("../middleware/adminMiddleware");
-
+router.get("/", getUsers);
 router.post("/signup", signUp);
-router.get("/users", getUsers);
 router.post("/signin", checkUser);
 
 module.exports = router;

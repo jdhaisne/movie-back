@@ -9,6 +9,7 @@ const topicRoutes = require("./routes/RTopic")
 const commentRoutes = require("./routes/RComment")
 const ratingRoutes = require("./routes/RRating")
 const likeRoutes = require("./routes/RLike")
+// const index = require("./routes/index")
 
 const cors = require("cors");
 const app = express();
@@ -32,8 +33,8 @@ const main = async () => {
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     });
-
-  app.use("/", usersRoutes);
+  // app.use("/", index)
+  app.use("/user", usersRoutes);
   app.use("/movie", movieRoutes);
   app.use("/topic", topicRoutes);
   app.use("/comment", commentRoutes);
