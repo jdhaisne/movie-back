@@ -1,9 +1,9 @@
-import {Movie} from '../models/movie'
+import {MMovie} from '../models/MMovie'
 import { v4 as uuid4 } from 'uuid';
 
   exports.getAllMovies = (req:any, res:any, next:any) => {
     console.log('test')
-    Movie.findAll()
+    MMovie.findAll()
       .then((movies:any) => {
         res.status(200).json(movies);
       })
@@ -17,7 +17,7 @@ import { v4 as uuid4 } from 'uuid';
 
   exports.getOneMovie = (req:any, res:any, next:any) => {
     console.log('test')
-    Movie.findAll({ where: { title: req.params.title } })
+    MMovie.findAll({ where: { title: req.params.title } })
       .then((movies:any) => {
         res.status(200).json(movies);
       })
@@ -31,23 +31,23 @@ import { v4 as uuid4 } from 'uuid';
   
   exports.postMovie = async (req:any, res:any, next:any) => {
     console.log(req.body)
-    const movie = Movie.create({
-      Actors : req.body.actors,
-      BoxOffices :req.body.boxOffices,
-      Country : req.body.country,
-      Director : req.body.director,
-      Genre : req.body.genre,
-      Language : req.body.language,
-      Plot : req.body.plot,
-      Poster :req.body.poster,
-      Rated : req.body.language,
+    const movie = MMovie.create({
+      actors : req.body.actors,
+      boxOffices :req.body.boxOffices,
+      country : req.body.country,
+      director : req.body.director,
+      genre : req.body.genre,
+      language : req.body.language,
+      plot : req.body.plot,
+      poster :req.body.poster,
+      rated : req.body.language,
         // Ratings(tableau d’objet)
-      Released :req.body.released,
-      RunTime :req.body.runTime,
-      Title :req.body.title,
-      Type :req.body.type,
-      Year :req.body.year,
-      ImdbID: uuid4(),
+      released :req.body.released,
+      runTime :req.body.runTime,
+      title :req.body.title,
+      type :req.body.type,
+      year :req.body.year,
+      imdbID: uuid4(),
     });
         movie
         .then(() => res.status(201).json({ movie }))

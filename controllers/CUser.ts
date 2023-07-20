@@ -17,12 +17,10 @@ export const getUsers = async (req: any, res: any) => {
 //ROUTE GET POUR RECUPERER UN USER
 // NB : utiliser http:// et non https !!
 export const getUser = async (req: any, res: any) => {
-  const { id } = req.params;
-  console.log(id);
   try {
-    const user = await User.findOne({ where: { id } });
-    console.log(user);
-    res.send(user);
+    const users = await User.findByPk(req.params.id);
+    console.log(users);
+    res.send(users);
   } catch (error) {
     console.error("Error occurred:", error);
     res.status(500).send("An error occurred");
