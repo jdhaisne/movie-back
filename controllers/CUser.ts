@@ -14,6 +14,17 @@ export const getUsers = async (req: any, res: any) => {
   }
 };
 
+export const getUser = async (req: any, res: any) => {
+  try {
+    const users = await User.findByPk(req.params.id);
+    console.log(users);
+    res.send(users);
+  } catch (error) {
+    console.error("Error occurred:", error);
+    res.status(500).send("An error occurred");
+  }
+};
+
 //ROUTE POST POUR VERIFIER SI L'UTILISATEUR A DEJA UN COMPTE et qu'il a le bon mot de passe
 // NB : utiliser http:// et non https !!
 export const checkUser = async (req: any, res: any) => {
