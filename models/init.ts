@@ -1,12 +1,12 @@
-import { Movie } from "../models/movie";
-import { Topic } from "../models/topic";
-import { Comment } from "../models/comment";
+import { MMovie } from "../models/MMovie";
+import { MTopic } from "../models/MTopic";
+import { MComment } from "../models/MComment";
 import { User } from "./MUser";
 
 const create_tables = async () => {
-  await Movie.sync();
-  await Topic.sync();
-  await Comment.sync();
+  await MMovie.sync();
+  await MTopic.sync();
+  await MComment.sync();
   await User.sync();
 };
 
