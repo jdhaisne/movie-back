@@ -33,7 +33,7 @@ const main = async () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     });
 
-  app.use("/", usersRoutes);
+  app.use("/user", usersRoutes);
   app.use("/movie", movieRoutes);
   app.use("/topic", topicRoutes);
   app.use("/comment", commentRoutes);
