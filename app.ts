@@ -33,7 +33,9 @@ const main = async () => {
   app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
     });
+
   // app.use("/", index)
+
   app.use("/user", usersRoutes);
   app.use("/movie", movieRoutes);
   app.use("/topic", topicRoutes);
