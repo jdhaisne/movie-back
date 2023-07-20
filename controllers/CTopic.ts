@@ -8,6 +8,7 @@ exports.postTopic = async (req: any, res: any, next: any) => {
     movieId: req.params.id,
     type: req.body.type,
   });
+  console.log(topic)
   topic
     .then(() => res.status(201).json({ topic }))
     .catch((error: any) => res.status(400).json({ error }));
