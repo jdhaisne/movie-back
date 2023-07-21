@@ -19,25 +19,17 @@ const getAllLikes = async (req: any, res: any) => {
   }
 };
 
-
-
-
-const getLikeById =async (req: any, res: any) => {
-    try {
-        const id = parseInt(req.params.id)
-        if(!hasValidId(id)) {
-            res.status(500).send('An error occurred: ID needed')
-            return
-        }
-        const like = await MLike.findByPk(id)
-        console.log(like)
-        res.send(like)
-    }catch(err) {
-        console.error("Error occurred:", err);
-        res.status(500).send("An error occurred");
-
+const getLikeById = async (req: any, res: any) => {
+  try {
+    const id = parseInt(req.params.id);
+    if (!hasValidId(id)) {
+      res.status(500).send("An error occurred: ID needed");
+      return;
     }
+  }
+  catch(err) {
 
+  }
 };
 
 const getLikesByUserId = async (req: any, res: any) => {
