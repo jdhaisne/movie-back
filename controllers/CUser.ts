@@ -1,4 +1,6 @@
+import { MLike } from "../models/MLike";
 import { MMovie } from "../models/MMovie";
+import { CLike } from "./CLike";
 
 const { MUser } = require("../models/MUser");
 const bcrypt = require("bcrypt");
@@ -29,21 +31,23 @@ export const getUser = async (req: any, res: any) => {
   }
 };
 
-export const getUserLikedMovies = async (req: any, res: any) => {
-  try {
-    const likedMovies = await MUser.findOne({
-      where: {
-        id: req.params.id
-      },
-      include: MMovie
-    });
-    console.log(likedMovies);
-    res.send(likedMovies);
-  } catch (error) {
-    console.error("Error occurred:", error);
-    res.status(500).send("An error occurred");
-  }
-};
+// export const getUserLikedMovies = async (req: any, res: any) => {
+//   try {
+//     const likedMovies = []
+//     let  likes = await MLike.findAll({where: {
+//       userId: req.params.id
+//     }})
+  
+//     console.log(likes)
+//     likes.forEach(async (like) => {
+//      let likedMovie = await fetch()
+//     })
+//     res.send(likes)
+//   } catch (error) {
+//     console.error("Error occurred:", error);
+//     res.status(500).send("An error occurred");
+//   }
+// };
 
 //ROUTE POST POUR VERIFIER SI L'UTILISATEUR A DEJA UN COMPTE et qu'il a le bon mot de passe
 // NB : utiliser http:// et non https !!
