@@ -26,6 +26,10 @@ const getLikeById = async (req: any, res: any) => {
       res.status(500).send("An error occurred: ID needed");
       return;
     }
+  }
+  catch(err) {
+
+  }
 };
 
 const getLikesByUserId = async (req: any, res: any) => {
