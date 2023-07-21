@@ -1,4 +1,5 @@
 import bodyParser from "body-parser";
+import { v4 as uuid4 } from "uuid";
 
 const { MLike } = require("../models/MLike");
 
@@ -37,12 +38,14 @@ const getLikeById = async (req: any, res: any) => {
 const getLikesByUserId = async (req: any, res: any) => {
   try {
     const id = parseInt(req.params.id);
+    console.log("VOICI LE TYPE DE L'ID", id);
     if (!hasValidId(id)) {
+      console.log("ID INVALIDE");
       res.status(500).send("An error occurred: ID needed");
       return;
     }
     const like = await MLike.findAll({ where: { userId: id } });
-    console.log(like);
+    console.log("VOICI LES LIKES", like);
     res.send(like);
   } catch (err) {
     console.error("Error occurred:", err);
@@ -123,18 +126,13 @@ const putLike = async (req: any, res: any) => {
 const deleteLike = async (req: any, res: any) => {
   console.log(req.body);
   try {
-    let deletedLike = await MLike.destroy({
+    let deletedLike = await MLike.delete({
       where: {
-        userId: req.body.userId,
-        movieId: req.body.movieId,
+        id: req.body.id,
       },
     });
     console.log(deletedLike);
-    if (deletedLike === 0) {
-      res.status(404).send("Like not found");
-    } else {
-      res.status(204).send("Like supprimé avec succès");
-    }
+    res.send(deletedLike);
   } catch (err) {
     console.error("Error occurred:", err);
     res.status(500).send("An error occurred");
