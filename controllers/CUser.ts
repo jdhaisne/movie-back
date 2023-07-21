@@ -1,11 +1,13 @@
-const { User } = require("../models/MUser");
+import { MMovie } from "../models/MMovie";
+
+const { MUser } = require("../models/MUser");
 const bcrypt = require("bcrypt");
 
 //ROUTE GET POUR RECUPERER TOUS LES UTILISATEURS
 // NB : utiliser http:// et non https !!
 export const getUsers = async (req: any, res: any) => {
   try {
-    const users = await User.findAll();
+    const users = await MUser.findAll();
     console.log(users);
     res.send(users);
   } catch (error) {
@@ -18,9 +20,25 @@ export const getUsers = async (req: any, res: any) => {
 // NB : utiliser http:// et non https !!
 export const getUser = async (req: any, res: any) => {
   try {
-    const users = await User.findByPk(req.params.id);
+    const users = await MUser.findByPk(req.params.id);
     console.log(users);
     res.send(users);
+  } catch (error) {
+    console.error("Error occurred:", error);
+    res.status(500).send("An error occurred");
+  }
+};
+
+export const getUserLikedMovies = async (req: any, res: any) => {
+  try {
+    const likedMovies = await MUser.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: MMovie
+    });
+    console.log(likedMovies);
+    res.send(likedMovies);
   } catch (error) {
     console.error("Error occurred:", error);
     res.status(500).send("An error occurred");
@@ -32,7 +50,7 @@ export const getUser = async (req: any, res: any) => {
 export const checkUser = async (req: any, res: any) => {
   const { mail } = req.body;
   try {
-    const user = await User.findOne({ where: { mail } });
+    const user = await MUser.findOne({ where: { mail } });
     console.log(user);
     if (user) {
       // L'utilisateur existe dans la table
@@ -73,7 +91,7 @@ export const signUp = async (req: any, res: any) => {
       // Gérer le cas où le mot de passe est manquant
       return res.status(400).send("Le mot de passe est requis");
     }
-    const [user, created] = await User.findOrCreate({
+    const [user, created] = await MUser.findOrCreate({
       where: { mail: req.body.mail },
       defaults: {
         lastName: req.body.lastName,

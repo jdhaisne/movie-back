@@ -1,5 +1,8 @@
 import { sequelize } from "../db";
 import { DataTypes } from "sequelize";
+import { MMovie } from "./MMovie";
+import {MUser} from "./MUser"
+
 
 export const MLike = sequelize.define(
   "like",
@@ -12,3 +15,8 @@ export const MLike = sequelize.define(
     timestamps: false,
   }
 );
+
+
+  MMovie.belongsToMany(MUser, {through: MLike})
+  MUser.belongsToMany(MMovie, {through: MLike})
+
