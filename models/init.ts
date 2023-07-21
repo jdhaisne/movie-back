@@ -5,6 +5,7 @@ import { MUser } from "./MUser";
 import { MLike } from "./MLike";
 import { MRating } from "./MRating";
 
+
 const create_tables = async () => {
   await MMovie.sync();
   await MTopic.sync();

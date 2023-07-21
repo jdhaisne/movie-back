@@ -4,8 +4,8 @@ import { v4 as uuid4 } from 'uuid';
 exports.postComment = async (req:any, res:any) => {
     const comment:any = MComment.create({
         message : req.body.message,
-        userId : req.body.userID,
-        topicId : req.body.topicID,
+        userId : req.body.userId,
+        topicId : req.body.topicId,
     })
     .then(() => res.status(201).json({ comment }))
     .catch((error:any) => res.status(400).json({ error}))

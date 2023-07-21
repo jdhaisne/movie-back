@@ -50,6 +50,30 @@ const getRatingsByUserId = async (req: any, res: any) => {
   }
 };
 
+const getRatingsByUserIdAndMovieId = async (req: any, res: any) => {
+  try {
+    const userId = req.params.userId;
+    if (!hasValidId(userId)) {
+      res.status(500).send("An error occurred: userID needed");
+      return;
+    }
+    const movieID = req.params.movieID;
+    if (!hasValidId(userId)) {
+      console.log(req.params);
+      res.status(500).send("An error occurred: movieID needed");
+      return;
+    }
+    const ratings = await MRating.findOne({
+      where: { userId: userId, movieID: movieID },
+    });
+    console.log(ratings);
+    res.send(ratings);
+  } catch (err) {
+    console.error("Error occurred:", err);
+    res.status(500).send("An error occurred");
+  }
+};
+
 const getRatingsByMovieId = async (req: any, res: any) => {
   try {
     const id = parseInt(req.params.id);
@@ -68,8 +92,10 @@ const getRatingsByMovieId = async (req: any, res: any) => {
 
 const getMeanRatingByMovieId = async (req: any, res: any) => {
   try {
-    const id = parseInt(req.params.id);
+    // const id = parseInt(req.params.id);
+    const id = req.params.id;
     if (!hasValidId(id)) {
+      console.log(req.params.id);
       res.status(500).send("An error occurred: ID needed");
       return;
     }
@@ -78,10 +104,12 @@ const getMeanRatingByMovieId = async (req: any, res: any) => {
         movieId: id,
       },
     });
+    console.log(nbRatings);
     const sumRatings = await MRating.sum("rating", { where: { movieId: id } });
+    console.log(sumRatings);
     const mean = sumRatings / nbRatings;
-    console.log(mean);
-    res.send(mean);
+    console.log("VOICI LA NOTE MEAN", mean);
+    res.json(mean);
   } catch (err) {
     console.error("Error occurred:", err);
     res.status(500).send("An error occurred");
@@ -181,6 +209,7 @@ export const CRating = {
   getRatingById,
   getRatingsByMovieId,
   getRatingsByUserId,
+  getRatingsByUserIdAndMovieId,
   getMeanRatingByMovieId,
   getMeanRatingByUserId,
   postRating,
