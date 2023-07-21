@@ -16,6 +16,8 @@ export const getUsers = async (req: any, res: any) => {
   }
 };
 
+//ROUTE GET POUR RECUPERER UN USER
+// NB : utiliser http:// et non https !!
 export const getUser = async (req: any, res: any) => {
   try {
     const users = await MUser.findByPk(req.params.id);
