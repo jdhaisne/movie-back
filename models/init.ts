@@ -6,12 +6,12 @@ import { MLike } from "./MLike";
 import { MRating } from "./MRating";
 
 const create_tables = async () => {
-  await MMovie.sync({ force: true });
-  await MTopic.sync({ force: true });
-  await MComment.sync({ force: true });
-  await User.sync();
-  await MLike.sync({ force: true });
-  await MRating.sync({ force: true });
+  await MMovie.sync();
+  await MTopic.sync();
+  await MComment.sync();
+  await MUser.sync();
+  await MLike.sync();
+  await MRating.sync();
 };
 
 create_tables();
