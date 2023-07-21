@@ -37,13 +37,7 @@ const getLikeById =async (req: any, res: any) => {
         res.status(500).send("An error occurred");
 
     }
-    const like = await MLike.findByPk(id);
-    console.log(like);
-    res.send(like);
-  } catch (err) {
-    console.error("Error occurred:", err);
-    res.status(500).send("An error occurred");
-  }
+
 };
 
 const getLikesByUserId = async (req: any, res: any) => {
