@@ -8,7 +8,7 @@ exports.postTopic = async (req: any, res: any, next: any) => {
     movieId: req.params.id,
     type: req.body.type,
   });
-  console.log(topic)
+  console.log(topic);
   topic
     .then(() => res.status(201).json({ topic }))
     .catch((error: any) => res.status(400).json({ error }));
@@ -25,6 +25,18 @@ exports.getAllTopics = async (req: any, res: any, next: any) => {
       });
     });
 };
+
+// exports.getAllTopicsbyUserId = async (req: any, res: any, next: any) => {
+//   MTopic.findAll({ where: { userId: req.params.id } })
+//     .then((topic: any) => {
+//       res.status(200).json(topic);
+//     })
+//     .catch((error: any) => {
+//       res.status(400).json({
+//         error: error,
+//       });
+//     });
+// };
 
 exports.getOneTopic = async (req: any, res: any, next: any) => {
   MTopic.findAll({ where: { movieId: req.params.id } })
