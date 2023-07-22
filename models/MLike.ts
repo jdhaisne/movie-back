@@ -17,6 +17,6 @@ export const MLike = sequelize.define(
 );
 
 
-  MMovie.belongsToMany(MUser, {through: MLike})
-  MUser.belongsToMany(MMovie, {through: MLike})
+  // MMovie.belongsToMany(MUser, {through: MLike})
+  // MUser.belongsToMany(MMovie, {through: MLike})
 

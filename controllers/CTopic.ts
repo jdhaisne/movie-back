@@ -38,6 +38,22 @@ exports.getAllTopics = async (req: any, res: any, next: any) => {
 //     });
 // };
 
+exports.getAllTopicsByMovieId = async (req: any, res: any, next: any) => {
+  MTopic.findAll({
+    where: {
+      movieid: req.params.id,
+    },
+  })
+    .then((topic: any) => {
+      res.status(200).json(topic);
+    })
+    .catch((error: any) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+};
+
 exports.getOneTopic = async (req: any, res: any, next: any) => {
   MTopic.findAll({ where: { movieId: req.params.id } })
     .then((topic: any) => {

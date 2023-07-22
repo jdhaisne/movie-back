@@ -16,7 +16,7 @@ exports.getAllMovies = (req: any, res: any, next: any) => {
 
 exports.getOneMovie = (req: any, res: any, next: any) => {
   console.log("test");
-  MMovie.findAll({ where: { title: req.params.title } })
+  MMovie.findAll({ where: { Title: req.params.title } })
     .then((movies: any) => {
       res.status(200).json(movies);
     })
