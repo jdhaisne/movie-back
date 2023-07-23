@@ -11,8 +11,12 @@ export const MTopic = sequelize.define(
     // Image : {type: DataTypes.TEXT},
     movieId: { type: DataTypes.STRING({ length: 100 }) },
     type: { type: DataTypes.STRING({ length: 100 }) },
+    userId: { type: DataTypes.INTEGER },
   },
   {
     timestamps: false,
   }
 );
+
+//#j'ai créé userId pour le modèle, et je l'ai ajouté dans phpMyAdmin.
+//#J'ai ajouté une route dans CTopic + RTopic
