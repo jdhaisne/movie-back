@@ -23,9 +23,7 @@ const main = async () => {
   app.use(bodyParser.json())
 
   app.use(
-    cors({
-      origin: "*",
-    })
+    cors()
   );
 
   connectDb();
