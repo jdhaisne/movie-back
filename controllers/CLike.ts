@@ -26,10 +26,7 @@ const getLikeById = async (req: any, res: any) => {
       res.status(500).send("An error occurred: ID needed");
       return;
     }
-  }
-  catch(err) {
-
-  }
+  } catch (err) {}
 };
 
 const getLikesByUserId = async (req: any, res: any) => {
@@ -123,13 +120,18 @@ const putLike = async (req: any, res: any) => {
 const deleteLike = async (req: any, res: any) => {
   console.log(req.body);
   try {
-    let deletedLike = await MLike.delete({
+    let deletedLike = await MLike.destroy({
       where: {
-        id: req.body.id,
+        userId: req.body.userId,
+        movieId: req.body.movieId,
       },
     });
     console.log(deletedLike);
-    res.send(deletedLike);
+    if (deletedLike === 0) {
+      res.status(404).send("Like not found");
+    } else {
+      res.status(204).send("Like supprimé avec succès");
+    }
   } catch (err) {
     console.error("Error occurred:", err);
     res.status(500).send("An error occurred");
