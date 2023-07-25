@@ -9,10 +9,10 @@ import { MRating } from "./MRating";
 const create_tables = async () => {
 
   await MMovie.sync();
-  await MTopic.sync();
+  await MTopic.sync({force: true});
   await MComment.sync();
   await MUser.sync();
-  await MLike.sync({force: true});
+  await MLike.sync();
   await MRating.sync();
   // await MMovie.sync({ force: true });
   // await MTopic.sync({ force: true });
