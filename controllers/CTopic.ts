@@ -2,7 +2,6 @@ import { MTopic } from "../models/MTopic";
 import {MMovie} from "../models/MMovie"
 import { v4 as uuid4 } from "uuid";
 
-<<<<<<< HEAD
 
 
 exports.postTopic = async (req: any, res: any, next: any) => {
@@ -22,19 +21,6 @@ exports.postTopic = async (req: any, res: any, next: any) => {
     .catch((error: any) => res.status(400).json({ error }));
 };
 
-=======
-// exports.postTopic = async (req: any, res: any, next: any) => {
-//   const topic = MTopic.create({
-//     title: req.body.title,
-//     subject: req.body.subject,
-//     movieId: req.params.id,
-//     type: req.body.type,
-//   });
-//   console.log(topic);
-//   topic
-//     .then(() => res.status(201).json({ topic }))
-//     .catch((error: any) => res.status(400).json({ error }));
->>>>>>> 42359b125cc6a67597b4f754e5b69fe54d74012a
 // };
 
 exports.postTopicWithUserId = async (req: any, res: any, next: any) => {
